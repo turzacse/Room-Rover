@@ -2,6 +2,9 @@ import { useParams, useSearchParams } from "react-router-dom";
 import Container from "../../components/Shared/Container";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Shared/Loader";
+import Header from "../../components/RoomDetails/Header";
+import RoomInfo from "../../components/RoomDetails/RoomInfo";
+import DatePicker from "../../components/RoomDetails/Calender";
 
 const RoomDetails = () => {
     const { id } = useParams();
@@ -24,7 +27,18 @@ const RoomDetails = () => {
     if(loading) return <Loader/>
     return (
         <Container>
-            {rooms.title}
+            <div>
+                <div className="flex flex-col gap-6">
+                <Header roomData = {rooms}/>    
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-7"> 
+                    <RoomInfo roomData={rooms}/>
+                    <div className="md:col-span-3 order-first md:order-last">
+                        <DatePicker></DatePicker>
+                    </div>
+                </div>
+                {/* Calend  */}
+            </div>
         </Container>
     );
 };
